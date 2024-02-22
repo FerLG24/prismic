@@ -8,7 +8,7 @@
       const accessToken = 'MC5aZFpCT2hFQUFDSUFLUlNa.77-9SO-_ve-_ve-_vWwjAy8S77-9Oe-_ve-_ve-_ve-_ve-_vQzvv73vv73vv70kfe-_vUwa77-9Pg0377-9TA'
       const client = prismic.createClient(repositoryName,{accessToken})
       const init = async () => {
-        const prismicDoc = await client.getAllByType('blog')
+        const prismicDoc = await client.getByUID('blog','perro')
         console.log(prismicDoc.data)
         const { titulo, texto, imagen, embed} = prismicDoc.data
         const titleHTML = prismic.asHTML(titulo)
