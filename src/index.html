@@ -8,13 +8,27 @@
       const accessToken = 'MC5aZFpCT2hFQUFDSUFLUlNa.77-9SO-_ve-_ve-_vWwjAy8S77-9Oe-_ve-_ve-_ve-_ve-_vQzvv73vv73vv70kfe-_vUwa77-9Pg0377-9TA'
       const client = prismic.createClient(repositoryName,{accessToken})
       const init = async () => {
-        const prismicDoc = await client.getByUID('blog','perro')
+        const prismicDoc = await client.getByUID('blog','dsqa')
         console.log(prismicDoc.data)
-        const { titulo, texto, imagen, embed} = prismicDoc.data
+        const { titulo, texto, imagen, embed, link, link_a_media, fecha,
+          calendario_con_hora, color, numeros, booleano,geopoint, dropdown, match_search} = prismicDoc.data
         const titleHTML = prismic.asHTML(titulo)
         const descriptionHTML = prismic.asHTML(texto)
         const src = prismic.asImageSrc(imagen)
         const rawEmbed = embed.html 
+        const enlace = prismic.asLink(link)
+        const mediaLink = prismic.asLink(link_a_media)
+        const fechaConv = prismic.asDate(fecha)
+        const javaScriptDate = prismic.asDate(fecha)
+        const formattedDate = javaScriptDate.toLocaleDateString()
+        const javaScriptDateTime = prismic.asDate(calendario_con_hora)
+console.log(color)
+console.log(numeros)
+console.log(geopoint)
+console.log(booleano)
+console.log(dropdown)
+console.log(link_a_media)
+console.log(match_search)
         const image = `
   <img
     src="${src}"
@@ -23,8 +37,9 @@
 `
        const container = document.getElementById('container')
     
-       container.innerHTML = titleHTML + descriptionHTML + src + image + rawEmbed
-      }
+       container.innerHTML = titleHTML + descriptionHTML + src + image + rawEmbed + enlace
+       + link_a_media.name + fechaConv +  javaScriptDate + formattedDate,
+       javaScriptDateTime + color}
 
       init()
     </script>
